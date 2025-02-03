@@ -1,19 +1,53 @@
-<form class="flex flex-col gap-6 max-w-2xl w-11/12 mx-auto p-8 bg-gray-100 rounded-xl shadow-xl" data-netlify="true">
+<form 
+    id="google-form"
+    class="flex flex-col gap-6 max-w-2xl w-11/12 mx-auto p-8 bg-gray-100 rounded-xl shadow-xl"
+>
     <label class="text-lg text-gray-800" for="first-name">First Name</label>
-    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="first-name" type="text" name="first-name" required />
-  
+    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="first-name" type="text" name="entry.1529080910" required />
+
     <label class="text-lg text-gray-800" for="last-name">Last Name</label>
-    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="last-name" type="text" name="last-name" required />
-  
+    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="last-name" type="text" name="entry.210802275" required />
+
     <label class="text-lg text-gray-800" for="phone">Phone Number</label>
-    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="phone" type="tel" name="phone" required />
-  
+    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="phone" type="tel" name="entry.1786667545" required />
+
     <label class="text-lg text-gray-800" for="email">Email</label>
-    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="email" type="email" name="email" required />
-  
+    <input class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="email" type="email" name="entry.1173668293" required />
+
     <label class="text-lg text-gray-800" for="description">Tell us about your needs</label>
-    <textarea class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="description" name="description" rows="5" required></textarea>
-  
-    <button class="p-3 bg-gray-700 text-white text-lg rounded-lg hover:bg-gray-800 transition">Submit</button>
-  </form>
-  
+    <textarea class="p-3 border border-gray-400 rounded-lg text-lg bg-white text-gray-800" id="description" name="entry.646155619" rows="5" required></textarea>
+
+    <button class="p-3 bg-gray-700 text-white text-lg rounded-lg hover:bg-gray-800 transition" type="submit">Submit</button>
+    
+    <p id="form-response" class="text-lg text-green-600 mt-4 hidden">✅ Form submitted successfully!</p>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("google-form") as HTMLFormElement | null;
+        const responseMessage = document.getElementById("form-response") as HTMLParagraphElement | null;
+
+        if (!form) return; // Ensure the form exists before proceeding
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Stop default form submission
+
+            const formData = new FormData(form);
+
+            fetch("https://docs.google.com/forms/d/e/1FAIpQLSdMJKno4-4FcuNPRqZw56MG5AbpNRvqse1FZyx2gRhtJncDvw/formResponse", {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            })
+            .then(() => {
+                if (responseMessage) {
+                    responseMessage.classList.remove("hidden"); // Show success message
+                }
+                form.reset(); // Clear the form after submission
+            })
+            .catch(() => {
+                alert("There was an error submitting the form. Please try again.");
+            });
+        });
+    });
+</script>
