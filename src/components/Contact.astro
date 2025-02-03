@@ -1,0 +1,64 @@
+<form class="contact-form">
+    <label for="first-name">First Name</label>
+    <input id="first-name" type="text" name="first-name" required />
+  
+    <label for="last-name">Last Name</label>
+    <input id="last-name" type="text" name="last-name" required />
+  
+    <label for="phone">Phone Number</label>
+    <input id="phone" type="tel" name="phone" required />
+  
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" required />
+  
+    <label for="description">Tell us about your needs</label>
+    <textarea id="description" name="description" rows="5" required></textarea>
+  
+    <button type="submit">Submit</button>
+  </form>
+  
+  <style>
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 700px;
+      width: 90%;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #f2f5f3; /* Lighter muted green-gray */
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    .contact-form label {
+      font-size: 1rem;
+      color: #2f3d3a; /* Dark muted gray-green */
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 1rem;
+      border: 1px solid #9aa5a3; /* Muted gray */
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #ffffff; /* White background for better readability */
+      color: #2f3d3a; /* Dark muted gray-green */
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: #9aa5a3; /* Subtle placeholder color */
+    }
+    .contact-form button {
+      padding: 1rem;
+      background-color: #4e5d5b; /* Muted blue-gray */
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .contact-form button:hover {
+      background-color: #3c4c4a; /* Slightly darker muted blue-gray */
+    }
+  </style>
+  
